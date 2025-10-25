@@ -11,8 +11,11 @@ Web app interattiva per la guida completa all'installazione di Moodle su hosting
 ## ✨ Funzionalità
 
 ### 📱 Design Responsive
-- Layout ottimizzato per desktop, tablet e mobile
-- Menu laterale collassabile su dispositivi piccoli
+- Layout completamente responsive ottimizzato per desktop, tablet e mobile
+- Menu laterale collassabile con animazioni fluide su dispositivi piccoli
+- Pulsante hamburger nell'header per accesso rapido al menu su mobile
+- Overlay semi-trasparente quando il menu è aperto su mobile
+- Ottimizzazioni per schermi fino a 480px di larghezza
 
 ### 🌙 Dark Mode
 - Toggle per passare tra tema chiaro e scuro
@@ -157,7 +160,30 @@ Hai suggerimenti per migliorare la guida?
 ---
 
 **Creato il:** 25 Ottobre 2025
-**Versione:** 1.0.0
+**Versione:** 1.2.0
 **Basato su:** Migrazione reale deltaskill.it
+
+### 🔄 Changelog
+
+**v1.2.0** (25 Ottobre 2025)
+- 🔒 Sostituite tutte le password di esempio con placeholder generici
+- 🔒 Rimossi username e email sensibili sostituiti con esempi generici
+- 📱 Sistemato overflow dei testi nelle card e alert
+- 📱 Migliorato scrolling orizzontale nei blocchi di codice
+- 📱 Ottimizzato responsive per evitare testi che escono dai contenitori
+- 📱 Migliorato word-wrap e break-word per tutti i dispositivi
+- 🎨 Ridotto padding card e blocchi codice su mobile per migliore leggibilità
+
+**v1.1.0** (25 Ottobre 2025)
+- ✅ Design completamente responsive per tutti i dispositivi
+- ✅ Aggiunto pulsante hamburger nell'header per mobile
+- ✅ Aggiunto overlay semi-trasparente per il menu mobile
+- ✅ Migliorate animazioni e transizioni
+- ✅ Ottimizzazioni per schermi extra-small (≤480px)
+
+**v1.0.0** (25 Ottobre 2025)
+- 🎉 Rilascio iniziale
+
+---
 
 🎉 Buon lavoro con Moodle!

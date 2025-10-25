@@ -48,11 +48,23 @@ function initDarkMode() {
 function initSidebar() {
     const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('toggleSidebar');
+    const menuToggle = document.getElementById('menuToggle');
+    const overlay = document.getElementById('sidebarOverlay');
     const navItems = document.querySelectorAll('.nav-item');
 
-    // Toggle sidebar on mobile
-    toggleBtn.addEventListener('click', () => {
+    // Toggle sidebar on mobile (both buttons)
+    const toggleSidebar = () => {
         sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+    };
+
+    toggleBtn.addEventListener('click', toggleSidebar);
+    menuToggle.addEventListener('click', toggleSidebar);
+
+    // Close sidebar when clicking overlay
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
     });
 
     // Close sidebar when clicking a nav item on mobile
@@ -60,6 +72,7 @@ function initSidebar() {
         item.addEventListener('click', () => {
             if (window.innerWidth <= 1024) {
                 sidebar.classList.remove('open');
+                overlay.classList.remove('active');
             }
         });
     });
@@ -67,8 +80,12 @@ function initSidebar() {
     // Close sidebar when clicking outside on mobile
     document.addEventListener('click', (e) => {
         if (window.innerWidth <= 1024) {
-            if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
+            if (!sidebar.contains(e.target) &&
+                !toggleBtn.contains(e.target) &&
+                !menuToggle.contains(e.target) &&
+                !overlay.contains(e.target)) {
                 sidebar.classList.remove('open');
+                overlay.classList.remove('active');
             }
         }
     });

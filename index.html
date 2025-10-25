@@ -11,6 +11,13 @@
     <!-- Header -->
     <header class="header">
         <div class="header-content">
+            <button id="menuToggle" class="btn-icon menu-toggle" title="Menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
             <h1>🎓 Guida Moodle su Aruba</h1>
             <div class="header-controls">
                 <button id="searchBtn" class="btn-icon" title="Cerca">
@@ -105,6 +112,9 @@
             </a>
         </nav>
     </aside>
+
+    <!-- Sidebar Overlay (Mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Main Content -->
     <main class="main-content" id="mainContent">
@@ -267,7 +277,7 @@
                 <ol>
                     <li>Nel pannello Database → MySQL</li>
                     <li>Click su <strong>"Non ricordi la password?"</strong> o <strong>"Reimposta password"</strong></li>
-                    <li>Imposta una password sicura (es. <code>Fr@kabu10</code>)</li>
+                    <li>Imposta una password sicura (es. <code>TuaPassword123!</code>)</li>
                     <li><strong>SALVALA</strong> - ti servirà per config.php</li>
                 </ol>
             </div>
@@ -280,7 +290,7 @@
                     <li>Click <strong>"Vai a phpMyAdmin"</strong></li>
                     <li>Accedi con:
                         <ul>
-                            <li><strong>Utente:</strong> <code>Sql1895661</code> (o il tuo)</li>
+                            <li><strong>Utente:</strong> <code>TuoUsername_DB</code> (dal pannello Aruba)</li>
                             <li><strong>Password:</strong> quella appena impostata</li>
                         </ul>
                     </li>
@@ -866,7 +876,7 @@ $admin = $DB->get_record('user', array('username' => 'admin'));
 
 if ($admin) {
     // Nuova password
-    $newpassword = 'Deltaskill2025!';
+    $newpassword = 'NuovaPasswordAdmin2025!';
 
     // Usa la funzione Moodle per generare hash corretto
     $admin->password = hash_internal_user_password($newpassword);
@@ -876,7 +886,7 @@ if ($admin) {
 
     echo "&lt;h1>✅ Password aggiornata con successo!&lt;/h1>";
     echo "&lt;p>&lt;strong>Username:&lt;/strong> admin&lt;/p>";
-    echo "&lt;p>&lt;strong>Password:&lt;/strong> Deltaskill2025!&lt;/p>";
+    echo "&lt;p>&lt;strong>Password:&lt;/strong> NuovaPasswordAdmin2025!&lt;/p>";
     echo "&lt;p>&lt;a href='/moodle/'>→ Vai al login&lt;/a>&lt;/p>";
     echo "&lt;hr>";
     echo "&lt;p style='color: red;'>&lt;strong>⚠️ IMPORTANTE:&lt;/strong> Elimina questo file dopo il login!&lt;/p>";
@@ -896,7 +906,7 @@ if ($admin) {
                 <p>Login con:</p>
                 <ul>
                     <li><strong>Username:</strong> <code>admin</code></li>
-                    <li><strong>Password:</strong> <code>Deltaskill2025!</code></li>
+                    <li><strong>Password:</strong> <code>NuovaPasswordAdmin2025!</code></li>
                 </ul>
 
                 <div class="alert alert-error">
@@ -1088,10 +1098,10 @@ WHERE username = 'admin';</code></pre>
                         <ul>
                             <li><strong>Nome utente:</strong> <code>mario.rossi</code> (senza spazi, minuscolo)</li>
                             <li><strong>Autenticazione:</strong> Lascia <code>Autenticazione manuale</code></li>
-                            <li><strong>Password:</strong> <code>Password123!</code></li>
+                            <li><strong>Password:</strong> <code>PasswordStudente123!</code></li>
                             <li><strong>Nome:</strong> <code>Mario</code></li>
                             <li><strong>Cognome:</strong> <code>Rossi</code></li>
-                            <li><strong>Email:</strong> <code>mario.rossi@deltaskill.it</code></li>
+                            <li><strong>Email:</strong> <code>mario.rossi@esempio.it</code></li>
                         </ul>
                     </li>
                     <li>☑️ <strong>Forza cambio password</strong> (opzionale) - L'utente dovrà cambiarla al primo login</li>
@@ -1425,7 +1435,7 @@ VALUES (
                     <li>Configura:
                         <ul>
                             <li>🔑 <strong>Richiedi password</strong>: Sì</li>
-                            <li><strong>Password</strong>: <code>DeltaskillGuest2025</code></li>
+                            <li><strong>Password</strong>: <code>PasswordOspite2025!</code></li>
                         </ul>
                     </li>
                     <li><strong>Salva modifiche</strong></li>
@@ -1589,7 +1599,7 @@ Visibilità: Visibile</code></pre>
                     <p><strong>Soluzione alternativa:</strong></p>
                     <ul>
                         <li>Crea un utente studente con password semplice</li>
-                        <li>Username: <code>demo</code> / Password: <code>Demo2025!</code></li>
+                        <li>Username: <code>demo</code> / Password: <code>PasswordDemo2025!</code></li>
                         <li>Condividi queste credenziali per accesso limitato</li>
                     </ul>
                 </div>
