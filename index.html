@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida Interattiva: Moodle su Aruba</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <h1>🎓 Guida Moodle su Aruba</h1>
+            <div class="header-controls">
+                <button id="searchBtn" class="btn-icon" title="Cerca">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+                <button id="darkModeToggle" class="btn-icon" title="Dark Mode">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </header>
+
+    <!-- Search Overlay -->
+    <div id="searchOverlay" class="search-overlay">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cerca nella guida...">
+            <button id="closeSearch" class="btn-close">×</button>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Indice</h3>
+            <button id="toggleSidebar" class="btn-icon">☰</button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#section-1" class="nav-item" data-section="1">
+                <span class="nav-number">1</span>
+                <span class="nav-text">Scegliere l'hosting</span>
+            </a>
+            <a href="#section-2" class="nav-item" data-section="2">
+                <span class="nav-number">2</span>
+                <span class="nav-text">Preparazione locale</span>
+            </a>
+            <a href="#section-3" class="nav-item" data-section="3">
+                <span class="nav-number">3</span>
+                <span class="nav-text">Backup completo</span>
+            </a>
+            <a href="#section-4" class="nav-item" data-section="4">
+                <span class="nav-number">4</span>
+                <span class="nav-text">Database MySQL</span>
+            </a>
+            <a href="#section-5" class="nav-item" data-section="5">
+                <span class="nav-number">5</span>
+                <span class="nav-text">Caricare file</span>
+            </a>
+            <a href="#section-6" class="nav-item" data-section="6">
+                <span class="nav-number">6</span>
+                <span class="nav-text">Configurare config.php</span>
+            </a>
+            <a href="#section-7" class="nav-item" data-section="7">
+                <span class="nav-number">7</span>
+                <span class="nav-text">Proteggere moodledata</span>
+            </a>
+            <a href="#section-8" class="nav-item" data-section="8">
+                <span class="nav-number">8</span>
+                <span class="nav-text">Test e verifica</span>
+            </a>
+            <a href="#section-9" class="nav-item" data-section="9">
+                <span class="nav-number">9</span>
+                <span class="nav-text">Troubleshooting</span>
+            </a>
+            <a href="#section-10" class="nav-item" data-section="10">
+                <span class="nav-number">10</span>
+                <span class="nav-text">Ottimizzazioni</span>
+            </a>
+            <a href="#section-11" class="nav-item" data-section="11">
+                <span class="nav-number">11</span>
+                <span class="nav-text">Reset Password Admin</span>
+            </a>
+            <a href="#section-12" class="nav-item" data-section="12">
+                <span class="nav-number">12</span>
+                <span class="nav-text">Gestione Utenti</span>
+            </a>
+            <a href="#section-13" class="nav-item" data-section="13">
+                <span class="nav-number">13</span>
+                <span class="nav-text">Accesso Ospite (Guest)</span>
+            </a>
+            <a href="#checklist" class="nav-item" data-section="checklist">
+                <span class="nav-number">✓</span>
+                <span class="nav-text">Checklist finale</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <div class="hero">
+            <h1>Guida Completa: Installare Moodle su Aruba</h1>
+            <p class="subtitle">Dalla A alla Z - Basata su problemi reali risolti</p>
+        </div>
+
+        <!-- Section 1 -->
+        <section id="section-1" class="content-section">
+            <h2>1. Scegliere l'hosting corretto su Aruba</h2>
+
+            <div class="alert alert-warning">
+                <strong>⚠️ IMPORTANTE: Quale piano scegliere</strong>
+                <p><strong>✅ Devi prendere: HOSTING LINUX (non Windows)</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>Requisiti Moodle</h3>
+                <ul>
+                    <li>PHP 7.4+ (meglio 8.1 o 8.2)</li>
+                    <li>MySQL/MariaDB</li>
+                    <li>Server Apache/Nginx</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Piano consigliato minimo</h3>
+                <ul>
+                    <li><strong>Hosting Linux Easy/Medium</strong> (non Basic)</li>
+                    <li>Almeno <strong>5 GB di spazio</strong></li>
+                    <li><strong>1+ database MySQL</strong> incluso</li>
+                    <li><strong>PHP 8.2</strong> supportato</li>
+                    <li>Accesso <strong>File Manager</strong> e <strong>FTP</strong></li>
+                </ul>
+            </div>
+
+            <div class="alert alert-error">
+                <strong>❌ NON prendere:</strong>
+                <ul>
+                    <li>Hosting Windows (ASP.NET)</li>
+                    <li>Piano Basic se prevedi molti corsi/utenti</li>
+                    <li>Piani senza database MySQL</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Verifica dopo l'acquisto</h3>
+                <ol>
+                    <li><strong>Pannello Aruba → Hosting Linux → Informazioni</strong>
+                        <ul>
+                            <li>Versione PHP: <strong>8.1 o 8.2</strong> ✅</li>
+                            <li>Database MySQL: <strong>disponibile</strong> ✅</li>
+                        </ul>
+                    </li>
+                    <li><strong>Pannello → Database MySQL</strong>
+                        <ul>
+                            <li>Puoi creare almeno 1 database ✅</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="section-2" class="content-section">
+            <h2>2. Preparazione in locale (Moodle for Windows)</h2>
+
+            <div class="card">
+                <h3>Struttura tipica di Moodle for Windows</h3>
+                <pre><code class="language-plaintext">C:\moodle\
+├── server\
+│   ├── moodle.exe        ← Avvia/ferma il server locale
+│   ├── htdocs\
+│   │   └── moodle\       ← CODICE MOODLE (da caricare su Aruba)
+│   └── moodledata\       ← DATI (corsi, file, cache) - da caricare su Aruba</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="alert alert-info">
+                <h4>Come funziona in locale:</h4>
+                <ul>
+                    <li><strong>moodle.exe</strong>: È un server locale (Apache + MySQL + PHP) preconfigurato</li>
+                    <li><strong>NON crea "nuovi progetti"</strong> - hai 1 installazione = 1 sito Moodle</li>
+                    <li>Puoi creare più Moodle installando in cartelle diverse</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="section-3" class="content-section">
+            <h2>3. Backup completo prima della migrazione</h2>
+
+            <div class="card">
+                <h3>3.1 Backup FILE (codice Moodle)</h3>
+                <p><strong>Percorso:</strong> <code>C:\moodle\server\htdocs\moodle</code></p>
+                <ol>
+                    <li>Tasto destro sulla cartella <code>moodle</code></li>
+                    <li><strong>Invia a → Cartella compressa (ZIP)</strong></li>
+                    <li>Ottieni <code>moodle.zip</code> (~300-500 MB)</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>3.2 Backup DATI (moodledata)</h3>
+                <p><strong>Percorso:</strong> <code>C:\moodle\server\moodledata</code></p>
+                <ol>
+                    <li>Tasto destro sulla cartella <code>moodledata</code></li>
+                    <li><strong>Invia a → Cartella compressa (ZIP)</strong></li>
+                    <li>Ottieni <code>moodledata.zip</code></li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>3.3 Backup DATABASE (MySQL)</h3>
+                <p><strong>Se vuoi migrare corsi/utenti esistenti:</strong></p>
+                <ol>
+                    <li>Avvia <code>moodle.exe</code> (server locale)</li>
+                    <li>Apri browser: <code>http://localhost/phpmyadmin</code></li>
+                    <li>Seleziona il database di Moodle (di solito chiamato <code>moodle</code>)</li>
+                    <li><strong>Esporta</strong>
+                        <ul>
+                            <li>Metodo: <strong>Personalizzato</strong></li>
+                            <li>Formato: <strong>SQL</strong></li>
+                            <li>Compressione: <strong>zip</strong> (se il file è grande)</li>
+                        </ul>
+                    </li>
+                    <li>Click <strong>Esegui</strong> → salva <code>moodle_backup.sql.zip</code></li>
+                </ol>
+                <div class="alert alert-info">
+                    <strong>Se parti da zero (installazione pulita):</strong> salta questo step.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="section-4" class="content-section">
+            <h2>4. Creare il database MySQL su Aruba</h2>
+
+            <div class="card">
+                <h3>4.1 Creare il database</h3>
+                <ol>
+                    <li><strong>Pannello Aruba → Database → MySQL</strong></li>
+                    <li>Click <strong>Crea Database</strong></li>
+                    <li>Aruba ti mostrerà:
+                        <ul>
+                            <li><strong>Host:</strong> <code>31.11.39.250</code> (o <code>sqlXXXXX.aruba.it</code>)</li>
+                            <li><strong>Database:</strong> <code>Sql1895661_1</code> (esempio)</li>
+                            <li><strong>Utente:</strong> <code>Sql1895661</code> (esempio)</li>
+                            <li><strong>Password:</strong> ⚠️ <strong>DEVI IMPOSTARLA TU!</strong></li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="alert alert-warning">
+                <h4>⚠️ FONDAMENTALE: Impostare la password</h4>
+                <p><strong>Problema comune:</strong> Aruba NON invia la password via email!</p>
+                <p><strong>Soluzione:</strong></p>
+                <ol>
+                    <li>Nel pannello Database → MySQL</li>
+                    <li>Click su <strong>"Non ricordi la password?"</strong> o <strong>"Reimposta password"</strong></li>
+                    <li>Imposta una password sicura (es. <code>Fr@kabu10</code>)</li>
+                    <li><strong>SALVALA</strong> - ti servirà per config.php</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>4.3 Testare le credenziali (IMPORTANTISSIMO!)</h3>
+                <p><strong>Prima di andare avanti, verifica che le credenziali funzionino:</strong></p>
+                <ol>
+                    <li><strong>Pannello → Database → MySQL</strong></li>
+                    <li>Click <strong>"Vai a phpMyAdmin"</strong></li>
+                    <li>Accedi con:
+                        <ul>
+                            <li><strong>Utente:</strong> <code>Sql1895661</code> (o il tuo)</li>
+                            <li><strong>Password:</strong> quella appena impostata</li>
+                        </ul>
+                    </li>
+                    <li><strong>✅ Se entri e vedi il database:</strong> credenziali OK</li>
+                    <li><strong>❌ Se non entri:</strong> password errata → reimposta</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>4.4 (Opzionale) Importare database da locale</h3>
+                <p><strong>Solo se hai fatto il backup del DB locale:</strong></p>
+                <ol>
+                    <li>In phpMyAdmin su Aruba</li>
+                    <li>Seleziona il database <code>Sql1895661_1</code></li>
+                    <li>Click <strong>Importa</strong></li>
+                    <li>Scegli il file <code>moodle_backup.sql.zip</code></li>
+                    <li>Click <strong>Esegui</strong></li>
+                </ol>
+                <div class="alert alert-info">
+                    <strong>Se il file è troppo grande (timeout):</strong>
+                    <ul>
+                        <li>Aumenta il limite upload nel pannello PHP</li>
+                        <li>Oppure split il file SQL in parti più piccole</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="section-5" class="content-section">
+            <h2>5. Caricare i file su Aruba</h2>
+
+            <div class="card">
+                <h3>5.1 Struttura finale su Aruba</h3>
+                <pre><code class="language-plaintext">/web/htdocs/www.tuodominio.it/home/
+├── moodle/              ← Codice Moodle (pubblico)
+└── .data_mdl_2025/      ← Dati Moodle (NON pubblico)
+    └── moodledata/</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>5.2 Caricare il codice Moodle</h3>
+                <h4>Metodo 1: File Manager Aruba</h4>
+                <ol>
+                    <li><strong>Pannello → Hosting Linux → File Manager</strong></li>
+                    <li>Vai in <code>/web/htdocs/www.tuodominio.it/home/</code></li>
+                    <li><strong>Carica</strong> <code>moodle.zip</code>
+                        <ul>
+                            <li>Drag & drop (se attivo)</li>
+                            <li>Oppure click su pulsante <strong>Carica</strong></li>
+                        </ul>
+                    </li>
+                    <li>Dopo il caricamento: <strong>Tasto destro → Estrai</strong> (o Decomprimi)</li>
+                    <li>Verifica che ci sia la cartella <code>moodle/</code></li>
+                </ol>
+                <div class="alert alert-warning">
+                    ⚠️ <strong>Se il pulsante Carica è grigio:</strong>
+                    <ul>
+                        <li>Il file è troppo grande per l'upload web</li>
+                        <li>Usa FTP (vedi sotto)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h4>Metodo 2: FTP (FileZilla)</h4>
+                <p><strong>Se il file è grande o l'upload web non funziona:</strong></p>
+                <ol>
+                    <li>Scarica <strong>FileZilla</strong> (gratis)</li>
+                    <li>Connessione:
+                        <ul>
+                            <li><strong>Host:</strong> <code>ftp.tuodominio.it</code></li>
+                            <li><strong>Porta:</strong> <code>21</code></li>
+                            <li><strong>Utente:</strong> (dal pannello Aruba → FTP)</li>
+                            <li><strong>Password:</strong> (dal pannello Aruba → FTP)</li>
+                        </ul>
+                    </li>
+                    <li>Naviga in <code>/web/htdocs/www.tuodominio.it/home/</code></li>
+                    <li>Carica <code>moodle.zip</code></li>
+                    <li>Torna al File Manager Aruba e estrai lo zip</li>
+                </ol>
+            </div>
+
+            <div class="alert alert-error">
+                <h4>⚠️ CRITICO: moodledata NON deve essere dentro la cartella moodle/</h4>
+            </div>
+
+            <div class="card">
+                <h3>5.3 Creare cartella per moodledata</h3>
+                <p><strong>Posizione corretta:</strong></p>
+                <ol>
+                    <li>Nel File Manager, vai in <code>/web/htdocs/www.tuodominio.it/home/</code></li>
+                    <li>Click <strong>Nuova Cartella</strong></li>
+                    <li>Nome: <code>.data_mdl_2025</code> (il punto nasconde la cartella)</li>
+                    <li>Entra nella cartella <code>.data_mdl_2025/</code></li>
+                    <li>Carica ed estrai <code>moodledata.zip</code></li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>5.4 Impostare permessi corretti</h3>
+                <p><strong>Su moodledata:</strong></p>
+                <ol>
+                    <li>Tasto destro sulla cartella <code>.data_mdl_2025/moodledata</code></li>
+                    <li><strong>Permessi</strong> (o Proprietà)</li>
+                    <li>Imposta: <strong>777</strong> (o spunta tutte le caselle)</li>
+                    <li><strong>IMPORTANTE:</strong> Applica <strong>ricorsivamente</strong> a tutte le sottocartelle</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="section-6" class="content-section">
+            <h2>6. Configurare config.php correttamente</h2>
+
+            <div class="alert alert-warning">
+                <h4>⚠️ Problema comune: File Manager non crea .php</h4>
+                <p>Aruba spesso blocca la creazione diretta di file .php per sicurezza.</p>
+            </div>
+
+            <div class="card">
+                <h3>Soluzione 1: Duplica config-dist.php</h3>
+                <ol>
+                    <li>Nel File Manager, vai in <code>/moodle/</code></li>
+                    <li>Trova il file <code>config-dist.php</code></li>
+                    <li><strong>Tasto destro → Duplica</strong> (o Copia)</li>
+                    <li>Rinomina la copia in <code>config.php</code></li>
+                    <li><strong>Tasto destro → Modifica</strong> (o Edit)</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>Soluzione 2: Carica da locale</h3>
+                <ol>
+                    <li>Crea <code>config.php</code> sul tuo PC (Desktop)</li>
+                    <li>Caricalo nella cartella <code>/moodle/</code> su Aruba</li>
+                    <li>Se non accetta <code>.php</code>: carica come <code>config.txt</code> poi rinomina</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>6.2 Contenuto del config.php (TEMPLATE CORRETTO)</h3>
+                <p><strong>Copia questo template e compila i MAIUSCOLI con i tuoi dati:</strong></p>
+                <pre><code class="language-php">&lt;?php  // Moodle configuration file
+
+unset($CFG);
+global $CFG;
+$CFG = new stdClass();
+
+// --- DATABASE ARUBA ---
+$CFG-&gt;dbtype    = 'mysqli';
+$CFG-&gt;dblibrary = 'native';
+$CFG-&gt;dbhost    = 'HOST_DB_ARUBA';     // es. 31.11.39.250 o sqlXXXXX.aruba.it
+$CFG-&gt;dbname    = 'NOME_DATABASE';     // es. Sql1895661_1
+$CFG-&gt;dbuser    = 'UTENTE_DATABASE';   // es. Sql1895661
+$CFG-&gt;dbpass    = 'PASSWORD_DATABASE'; // quella impostata nel pannello
+$CFG-&gt;prefix    = 'mdl_';
+$CFG-&gt;dboptions = array(
+  'dbpersist'   =&gt; 0,
+  'dbport'      =&gt; 3306,
+  'dbsocket'    =&gt; false,
+  'dbcollation' =&gt; 'utf8mb4_unicode_ci',
+);
+
+// --- URL DEL SITO ---
+$CFG-&gt;wwwroot   = 'https://www.TUODOMINIO.it/moodle';
+
+// --- PERCORSO DATI (ASSOLUTO!) ---
+$CFG-&gt;dataroot  = '/web/htdocs/www.TUODOMINIO.it/home/.data_mdl_2025/moodledata';
+
+$CFG-&gt;admin     = 'admin';
+$CFG-&gt;directorypermissions = 0777;
+
+require_once(__DIR__ . '/lib/setup.php');</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="alert alert-error">
+                <h3>⚠️ ERRORI CRITICI DA EVITARE</h3>
+
+                <h4>❌ ERRORE 1: Password senza apice finale</h4>
+                <p><strong>SBAGLIATO:</strong></p>
+                <pre><code class="language-php">$CFG-&gt;dbpass    = 'Fr@kabu10; // Password</code></pre>
+
+                <p><strong>CORRETTO:</strong></p>
+                <pre><code class="language-php">$CFG-&gt;dbpass    = 'Fr@kabu10';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p><strong>Questo era l'errore che causava l'errore 500!</strong></p>
+
+                <h4>❌ ERRORE 2: File troncato</h4>
+                <p>Verifica che il file finisca SEMPRE con:</p>
+                <pre><code class="language-php">require_once(__DIR__ . '/lib/setup.php');</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                <p><strong>NON deve finire con $C o altro codice incompleto!</strong></p>
+
+                <h4>❌ ERRORE 3: Percorso relativo per dataroot</h4>
+                <p><strong>SBAGLIATO:</strong></p>
+                <pre><code class="language-php">$CFG-&gt;dataroot  = '../.data_mdl_2025/moodledata';</code></pre>
+
+                <p><strong>CORRETTO (percorso assoluto):</strong></p>
+                <pre><code class="language-php">$CFG-&gt;dataroot  = '/web/htdocs/www.tuodominio.it/home/.data_mdl_2025/moodledata';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <h4>❌ ERRORE 4: moodledata dentro htdocs pubblico</h4>
+                <p><strong>SBAGLIATO:</strong></p>
+                <pre><code class="language-php">$CFG-&gt;dataroot  = '/web/htdocs/www.tuodominio.it/home/moodle/moodledata';</code></pre>
+
+                <p><strong>CORRETTO (fuori dalla cartella pubblica):</strong></p>
+                <pre><code class="language-php">$CFG-&gt;dataroot  = '/web/htdocs/www.tuodominio.it/home/.data_mdl_2025/moodledata';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="section-7" class="content-section">
+            <h2>7. Proteggere moodledata</h2>
+
+            <div class="card">
+                <h3>7.1 Creare .htaccess dentro .data_mdl_2025</h3>
+                <p><strong>Perché:</strong> Impedire accesso web diretto ai file di Moodle</p>
+                <ol>
+                    <li>File Manager → vai in <code>/home/.data_mdl_2025/</code></li>
+                    <li>Crea file <code>.htaccess</code>
+                        <ul>
+                            <li>Se non puoi creare: carica da PC come <code>htaccess.txt</code> poi rinomina</li>
+                        </ul>
+                    </li>
+                    <li>Contenuto:</li>
+                </ol>
+                <pre><code class="language-apache">Require all denied
+Options -Indexes</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                <p><strong>Questo blocca TUTTO l'accesso web alla cartella!</strong></p>
+            </div>
+
+            <div class="card">
+                <h3>7.2 Test di sicurezza</h3>
+                <p>Prova ad accedere a:</p>
+                <pre><code class="language-plaintext">https://www.tuodominio.it/.data_mdl_2025/</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p><strong>✅ Se vedi:</strong> "Forbidden" o errore 403 → SICURO</p>
+                <p><strong>❌ Se vedi:</strong> elenco file o contenuto → NON sicuro (rivedi .htaccess)</p>
+            </div>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="section-8" class="content-section">
+            <h2>8. Test e verifica</h2>
+
+            <div class="card">
+                <h3>8.1 Primo accesso</h3>
+                <p>Apri browser e vai a:</p>
+                <pre><code class="language-plaintext">https://www.tuodominio.it/moodle</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <h4>Scenario A: Installazione nuova (DB vuoto)</h4>
+                <p>Vedrai la <strong>schermata di installazione Moodle</strong>:</p>
+                <ol>
+                    <li>Scegli lingua</li>
+                    <li>Conferma percorsi</li>
+                    <li>Inserisci dati amministratore</li>
+                    <li>Segui wizard</li>
+                </ol>
+
+                <h4>Scenario B: Migrazione (DB importato)</h4>
+                <p>Vedrai direttamente il <strong>tuo Moodle</strong> con corsi e utenti.</p>
+            </div>
+
+            <div class="card">
+                <h3>8.2 Verifica funzionalità base</h3>
+                <ul>
+                    <li>✅ Login amministratore funziona</li>
+                    <li>✅ Vedi corsi creati</li>
+                    <li>✅ Puoi caricare file</li>
+                    <li>✅ Navigazione tra pagine veloce</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="section-9" class="content-section">
+            <h2>9. Troubleshooting errori comuni</h2>
+
+            <div class="troubleshooting-item">
+                <h3 class="error-title">🔴 Errore 500 (Internal Server Error)</h3>
+
+                <div class="card">
+                    <h4>Causa 1: Errore di sintassi in config.php</h4>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Apri <code>config.php</code></li>
+                        <li>Verifica la riga della password:
+                            <pre><code class="language-php">$CFG-&gt;dbpass    = 'TuaPassword';  // ← Deve avere l'apice finale!</code></pre>
+                            <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                        </li>
+                        <li>Verifica che il file finisca con:
+                            <pre><code class="language-php">require_once(__DIR__ . '/lib/setup.php');</code></pre>
+                            <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h4>Causa 2: Permessi errati su moodledata</h4>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Imposta permessi <strong>777</strong> su <code>.data_mdl_2025/moodledata</code></li>
+                        <li>Applica ricorsivamente a tutte le sottocartelle</li>
+                    </ol>
+                </div>
+
+                <div class="card">
+                    <h4>Causa 3: File PHP danneggiato durante upload</h4>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Ricarica i file via FTP (non File Manager)</li>
+                        <li>Usa modalità <strong>Binaria</strong> (non ASCII)</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="troubleshooting-item">
+                <h3 class="error-title">🔴 "Unable to save the cache config to file"</h3>
+
+                <div class="card">
+                    <p><strong>Causa:</strong> moodledata non scrivibile o percorso errato</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li>Verifica in <code>config.php</code>:
+                            <pre><code class="language-php">$CFG-&gt;dataroot  = '/web/htdocs/www.tuodominio.it/home/.data_mdl_2025/moodledata';</code></pre>
+                            <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                            <p>(percorso ASSOLUTO, non relativo!)</p>
+                        </li>
+                        <li>Imposta permessi <strong>777</strong> su moodledata ricorsivamente</li>
+                        <li>Verifica che esistano queste cartelle dentro moodledata:
+                            <ul>
+                                <li><code>cache/</code></li>
+                                <li><code>localcache/</code></li>
+                                <li><code>sessions/</code></li>
+                                <li><code>temp/</code></li>
+                            </ul>
+                        </li>
+                        <li>Svuota contenuto cache:
+                            <ul>
+                                <li>Entra in <code>moodledata/cache/</code></li>
+                                <li>Cancella TUTTO il contenuto (non la cartella stessa)</li>
+                                <li>Fai lo stesso per <code>localcache/</code></li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="troubleshooting-item">
+                <h3 class="error-title">🔴 "Error: Database connection failed"</h3>
+
+                <div class="card">
+                    <p><strong>Causa:</strong> Credenziali database errate</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ol>
+                        <li><strong>Testa credenziali su phpMyAdmin:</strong>
+                            <ul>
+                                <li>Pannello Aruba → Database → phpMyAdmin</li>
+                                <li>Accedi con utente e password</li>
+                                <li><strong>Se non entri:</strong> password errata → reimposta dal pannello</li>
+                            </ul>
+                        </li>
+                        <li><strong>Verifica config.php:</strong>
+                            <pre><code class="language-php">$CFG-&gt;dbhost    = '31.11.39.250';     // IP corretto da pannello
+$CFG-&gt;dbname    = 'Sql1895661_1';     // Nome DB esatto
+$CFG-&gt;dbuser    = 'Sql1895661';       // Utente corretto
+$CFG-&gt;dbpass    = 'PasswordCorretta'; // Password dal pannello</code></pre>
+                            <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                        </li>
+                        <li><strong>Verifica porta:</strong>
+                            <pre><code class="language-php">'dbport' =&gt; 3306,  // Standard MySQL</code></pre>
+                            <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="troubleshooting-item">
+                <h3 class="error-title">🔴 Pagina bianca (nessun errore)</h3>
+
+                <div class="card">
+                    <p><strong>Causa:</strong> Error reporting disabilitato</p>
+                    <p><strong>Soluzione temporanea (solo per debug):</strong></p>
+                    <p>Aggiungi PRIMA di <code>require_once</code> in config.php:</p>
+                    <pre><code class="language-php">@error_reporting(E_ALL);
+@ini_set('display_errors', '1');
+
+require_once(__DIR__ . '/lib/setup.php');</code></pre>
+                    <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                    <p><strong>Poi ricarica</strong> - vedrai gli errori effettivi.</p>
+                    <div class="alert alert-warning">
+                        ⚠️ <strong>RIMUOVI DOPO IL DEBUG!</strong> (non lasciare in produzione)
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10 -->
+        <section id="section-10" class="content-section">
+            <h2>10. Ottimizzazioni finali</h2>
+
+            <div class="card">
+                <h3>10.1 Versione PHP</h3>
+                <p><strong>Pannello Aruba → Hosting Linux → PHP</strong></p>
+                <ul>
+                    <li>Imposta <strong>PHP 8.2</strong> (o minimo 8.1)</li>
+                    <li>Verifica impostazioni:
+                        <ul>
+                            <li><code>memory_limit</code>: <strong>256M</strong> (minimo 128M)</li>
+                            <li><code>max_execution_time</code>: <strong>300</strong> (per operazioni lunghe)</li>
+                            <li><code>upload_max_filesize</code>: <strong>128M</strong> (per caricare file grandi)</li>
+                            <li><code>post_max_size</code>: <strong>128M</strong></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>10.2 HiSpeed Cache Aruba</h3>
+                <p><strong>Pannello → HiSpeed Cache</strong></p>
+                <ul>
+                    <li><strong>Abilita</strong> per velocizzare il sito</li>
+                    <li><strong>Escludi:</strong> <code>/moodle/admin/</code> e <code>/moodle/login/</code>
+                        <br>(evita cache su pagine dinamiche)
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>10.3 Redirect da root a /moodle</h3>
+                <p><strong>Se vuoi che chi visita www.tuodominio.it veda subito Moodle:</strong></p>
+                <p>Crea/modifica <code>/web/htdocs/www.tuodominio.it/home/index.php</code>:</p>
+                <pre><code class="language-php">&lt;?php
+header('Location: /moodle/');
+exit;</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>10.4 SSL/HTTPS</h3>
+                <p><strong>Aruba fornisce SSL gratuito:</strong></p>
+                <ol>
+                    <li><strong>Pannello → Certificati SSL</strong></li>
+                    <li>Attiva <strong>Let's Encrypt</strong> (gratuito)</li>
+                    <li>Verifica che <code>config.php</code> usi:
+                        <pre><code class="language-php">$CFG-&gt;wwwroot = 'https://www.tuodominio.it/moodle';</code></pre>
+                        <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                        <p>(con <strong>https</strong>, non http!)</p>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>10.5 Cron Moodle</h3>
+                <p><strong>Moodle ha bisogno di un cron per:</strong></p>
+                <ul>
+                    <li>Inviare email</li>
+                    <li>Eseguire backup automatici</li>
+                    <li>Aggiornare cache</li>
+                </ul>
+
+                <h4>Opzione 1: Cron di sistema (se disponibile)</h4>
+                <p>Pannello Aruba → Cron (se disponibile nel tuo piano):</p>
+                <pre><code class="language-bash">*/15 * * * * php /web/htdocs/www.tuodominio.it/home/moodle/admin/cli/cron.php</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <h4>Opzione 2: Cron esterno (se piano base)</h4>
+                <p>Usa servizio gratuito tipo <strong>cron-job.org</strong>:</p>
+                <ul>
+                    <li>URL: <code>https://www.tuodominio.it/moodle/admin/cron.php</code></li>
+                    <li>Frequenza: ogni 15 minuti</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 11 -->
+        <section id="section-11" class="content-section">
+            <h2>11. Reset Password Admin Dopo Migrazione</h2>
+
+            <div class="alert alert-warning">
+                <strong>🔐 Problema: Non riesco ad accedere dopo la migrazione</strong>
+                <p><strong>Scenario tipico:</strong></p>
+                <ul>
+                    <li>Hai migrato Moodle da localhost ad Aruba</li>
+                    <li>Vedi i corsi sulla homepage</li>
+                    <li>Ma le credenziali di localhost <strong>non funzionano</strong></li>
+                    <li>Errore: "Login errato, riprova"</li>
+                </ul>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>Questo succede perché:</strong>
+                <ul>
+                    <li>Le password sono hashate (criptate) nel database</li>
+                    <li>Il sistema di hash potrebbe avere un "sale" (salt) diverso</li>
+                    <li>La cache potrebbe contenere dati vecchi</li>
+                    <li>Ci potrebbero essere errori nel <code>config.php</code></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>11.1 Verifiche preliminari</h3>
+                <p>Prima di resettare la password, verifica che il <code>config.php</code> sia corretto:</p>
+
+                <h4>❌ ERRORI COMUNI nel config.php:</h4>
+
+                <p><strong>1. Password senza apice finale:</strong></p>
+                <pre><code class="language-php">$CFG->dbpass = 'Fr@kabu10;  // ← SBAGLIATO! Manca l'apice prima del ;</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p><strong>2. File troncato:</strong></p>
+                <pre><code class="language-php">$C  // ← File incompleto!</code></pre>
+
+                <p><strong>3. Manca require_once finale:</strong></p>
+                <p>Il file deve SEMPRE finire con:</p>
+                <pre><code class="language-php">require_once(__DIR__ . '/lib/setup.php');</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <div class="alert alert-error">
+                    <strong>⚠️ Se trovi questi errori, correggili SUBITO e salva!</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>11.2 Metodo 1: Reset via phpMyAdmin (Base)</h3>
+
+                <p><strong>Quando usarlo:</strong></p>
+                <ul>
+                    <li>Per un reset veloce</li>
+                    <li>Non sempre funziona al 100% (dipende dal passwordsalt)</li>
+                </ul>
+
+                <p><strong>Procedura:</strong></p>
+                <ol>
+                    <li><strong>Accedi a phpMyAdmin</strong> - Pannello Aruba → Database → MySQL → Vai a phpMyAdmin</li>
+                    <li><strong>Seleziona il database</strong> - Click su <code>Sql1895661_1</code> (o il tuo) nella colonna sinistra</li>
+                    <li><strong>Trova la tabella mdl_user</strong> - Scorri e click su <code>mdl_user</code></li>
+                    <li><strong>Tab "Sfoglia"</strong> - Vedrai la lista degli utenti</li>
+                    <li><strong>Trova l'utente admin</strong> - Di solito è <code>id = 2</code></li>
+                    <li><strong>Click su "Modifica"</strong> (icona matita)</li>
+                    <li><strong>Modifica il campo password:</strong>
+                        <ul>
+                            <li>Menu a tendina (a sinistra): seleziona <strong>MD5</strong></li>
+                            <li>Campo testo (a destra): scrivi <code>Admin2025!</code></li>
+                            <li>Click <strong>"Esegui"</strong></li>
+                        </ul>
+                    </li>
+                    <li><strong>Prova il login:</strong> Username: <code>admin</code> / Password: <code>Admin2025!</code></li>
+                </ol>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ Se non funziona:</strong> Passa al Metodo 2 (soluzione definitiva)
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>11.3 Metodo 2: Script PHP con funzioni Moodle (DEFINITIVO) ⭐</h3>
+
+                <div class="alert alert-info">
+                    <strong>Questo metodo usa le funzioni native di Moodle per generare l'hash corretto, quindi funziona SEMPRE al 100%!</strong>
+                </div>
+
+                <h4>Step 1: Crea il file reset.php</h4>
+                <p><strong>File Manager → vai in <code>/moodle/</code></strong></p>
+                <p><strong>Crea nuovo file:</strong> <code>reset.php</code></p>
+                <p><strong>Contenuto:</strong></p>
+
+                <pre><code class="language-php">&lt;?php
+// Script per reset password admin Moodle
+require_once('config.php');
+require_once($CFG->libdir.'/moodlelib.php');
+
+// Trova utente admin
+$admin = $DB->get_record('user', array('username' => 'admin'));
+
+if ($admin) {
+    // Nuova password
+    $newpassword = 'Deltaskill2025!';
+
+    // Usa la funzione Moodle per generare hash corretto
+    $admin->password = hash_internal_user_password($newpassword);
+
+    // Salva nel database
+    $DB->update_record('user', $admin);
+
+    echo "&lt;h1>✅ Password aggiornata con successo!&lt;/h1>";
+    echo "&lt;p>&lt;strong>Username:&lt;/strong> admin&lt;/p>";
+    echo "&lt;p>&lt;strong>Password:&lt;/strong> Deltaskill2025!&lt;/p>";
+    echo "&lt;p>&lt;a href='/moodle/'>→ Vai al login&lt;/a>&lt;/p>";
+    echo "&lt;hr>";
+    echo "&lt;p style='color: red;'>&lt;strong>⚠️ IMPORTANTE:&lt;/strong> Elimina questo file dopo il login!&lt;/p>";
+} else {
+    echo "&lt;h1>❌ ERRORE: Utente admin non trovato!&lt;/h1>";
+    echo "&lt;p>Verifica che l'username sia corretto.&lt;/p>";
+}
+?></code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <h4>Step 2: Esegui lo script</h4>
+                <p>Apri il browser e vai su:</p>
+                <pre><code class="language-plaintext">https://www.tuodominio.it/moodle/reset.php</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <h4>Step 3: Testa il login</h4>
+                <p>Login con:</p>
+                <ul>
+                    <li><strong>Username:</strong> <code>admin</code></li>
+                    <li><strong>Password:</strong> <code>Deltaskill2025!</code></li>
+                </ul>
+
+                <div class="alert alert-error">
+                    <h4>Step 4: Elimina il file reset.php (IMPORTANTE!)</h4>
+                    <p><strong>⚠️ PER LA SICUREZZA!</strong></p>
+                    <ol>
+                        <li>File Manager → <code>/moodle/reset.php</code></li>
+                        <li><strong>Elimina il file</strong></li>
+                    </ol>
+                    <p><strong>Non lasciarlo online!</strong> Chiunque potrebbe usarlo per cambiare la tua password!</p>
+                </div>
+
+                <h4>Step 5: Cambia la password definitiva</h4>
+                <p>Una volta dentro Moodle:</p>
+                <ol>
+                    <li>Click sul tuo nome (in alto a destra)</li>
+                    <li><strong>Preferenze</strong> → <strong>Cambia password</strong></li>
+                    <li>Imposta una password sicura e facile da ricordare</li>
+                    <li>Salva</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>11.4 Svuotare la cache (se ancora non funziona)</h3>
+
+                <p>A volte il problema è la cache di Moodle che contiene dati vecchi.</p>
+
+                <p><strong>File Manager → vai in:</strong></p>
+                <pre><code class="language-plaintext">/home/.data_mdl_2025/moodledata/</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p><strong>Elimina il CONTENUTO (non le cartelle stesse) di:</strong></p>
+                <ol>
+                    <li><code>cache/</code> - Entra, seleziona tutto, elimina</li>
+                    <li><code>localcache/</code> - Stessa procedura</li>
+                    <li><code>sessions/</code> - Stessa procedura</li>
+                </ol>
+
+                <p><strong>Le cartelle rimarranno vuote</strong> - Moodle le riempirà automaticamente.</p>
+            </div>
+
+            <div class="card">
+                <h3>11.5 Verifica stato account admin (Avanzato)</h3>
+
+                <p>Se ancora non funziona, l'account potrebbe essere sospeso o non confermato.</p>
+
+                <p><strong>phpMyAdmin → Tab SQL</strong></p>
+
+                <pre><code class="language-sql">SELECT id, username, auth, suspended, deleted, confirmed, mnethostid
+FROM mdl_user
+WHERE username = 'admin';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p><strong>Valori corretti:</strong></p>
+                <ul>
+                    <li><code>auth = manual</code></li>
+                    <li><code>suspended = 0</code> (non sospeso)</li>
+                    <li><code>deleted = 0</code> (non eliminato)</li>
+                    <li><code>confirmed = 1</code> (confermato)</li>
+                    <li><code>mnethostid = 1</code> (host locale)</li>
+                </ul>
+
+                <p><strong>Se qualcosa è sbagliato, correggilo:</strong></p>
+                <pre><code class="language-sql">UPDATE mdl_user
+SET suspended = 0, deleted = 0, confirmed = 1, auth = 'manual', mnethostid = 1
+WHERE username = 'admin';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>11.6 Problema: passwordsaltmain</h3>
+
+                <p>Se hai un <code>passwordsaltmain</code> nel config.php, deve essere <strong>identico</strong> tra localhost e Aruba.</p>
+
+                <p><strong>Controlla config.php locale (sul tuo PC):</strong></p>
+                <pre><code class="language-php">$CFG->passwordsaltmain = 'valore_qualsiasi';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p><strong>Controlla config.php su Aruba:</strong></p>
+                <p>Cerca la stessa riga - <strong>devono essere IDENTICHE!</strong></p>
+
+                <div class="alert alert-warning">
+                    <p><strong>Se nel config.php locale c'è <code>passwordsaltmain</code> ma su Aruba no:</strong></p>
+                    <ol>
+                        <li>Copia la riga dal config.php locale</li>
+                        <li>Aggiungila nel config.php su Aruba (dopo <code>$CFG->directorypermissions</code>)</li>
+                        <li>Salva</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>11.7 Riepilogo metodi</h3>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--bg-tertiary);">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-color);">Metodo</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-color);">Difficoltà</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-color);">Successo</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-color);">Quando usarlo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Reset via phpMyAdmin</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Media</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">60%</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Primo tentativo rapido</td>
+                        </tr>
+                        <tr style="background: var(--success-color); color: white;">
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Script PHP Moodle ⭐</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Facile</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>100%</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Soluzione definitiva</strong></td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Svuota cache</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Facile</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">30%</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Dopo altri tentativi</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Verifica passwordsalt</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Media</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">80%</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Se usi password localhost</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="alert alert-info">
+                    <strong>💡 Consiglio:</strong> Usa direttamente il <strong>Metodo 2 (Script PHP)</strong> - è il più sicuro e funziona sempre!
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 12 -->
+        <section id="section-12" class="content-section">
+            <h2>12. Gestione Utenti in Moodle</h2>
+
+            <p>Una volta entrato come admin, puoi creare utenti per la tua piattaforma.</p>
+
+            <div class="card">
+                <h3>12.1 Tipi di utenti in Moodle</h3>
+
+                <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
+                    <thead>
+                        <tr style="background: var(--bg-tertiary);">
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-color);">Ruolo</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-color);">Cosa può fare</th>
+                            <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--border-color);">Quando usarlo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Amministratore</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Controllo totale del sito</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Tu e collaboratori fidati</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Manager</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Gestisce corsi e utenti, non le impostazioni del sito</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Coordinatori didattici</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Insegnante</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Gestisce un corso specifico</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Docenti</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Studente</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Accede ai corsi e completa le attività</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">Partecipanti ai corsi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>12.2 Creare un utente manualmente</h3>
+
+                <p><strong>Quando usarlo:</strong> Per creare pochi utenti specifici (colleghi, collaboratori)</p>
+
+                <p><strong>Procedura:</strong></p>
+                <ol>
+                    <li><strong>Amministrazione del sito</strong> → <strong>Utenti</strong> → <strong>Account</strong> → <strong>Aggiungi nuovo utente</strong></li>
+                    <li>Compila il form:
+                        <ul>
+                            <li><strong>Nome utente:</strong> <code>mario.rossi</code> (senza spazi, minuscolo)</li>
+                            <li><strong>Autenticazione:</strong> Lascia <code>Autenticazione manuale</code></li>
+                            <li><strong>Password:</strong> <code>Password123!</code></li>
+                            <li><strong>Nome:</strong> <code>Mario</code></li>
+                            <li><strong>Cognome:</strong> <code>Rossi</code></li>
+                            <li><strong>Email:</strong> <code>mario.rossi@deltaskill.it</code></li>
+                        </ul>
+                    </li>
+                    <li>☑️ <strong>Forza cambio password</strong> (opzionale) - L'utente dovrà cambiarla al primo login</li>
+                    <li>Click <strong>"Crea utente"</strong></li>
+                    <li>Comunica le credenziali all'utente</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>12.3 Assegnare ruoli agli utenti</h3>
+
+                <h4>Rendere un utente AMMINISTRATORE</h4>
+                <ol>
+                    <li><strong>Amministrazione del sito</strong> → <strong>Utenti</strong> → <strong>Permessi</strong> → <strong>Assegna ruoli di sistema</strong></li>
+                    <li>Click su <strong>"Amministratore/Manager"</strong></li>
+                    <li>Cerca l'utente (es. <code>Mario Rossi</code>)</li>
+                    <li>Selezionalo dalla colonna destra</li>
+                    <li>Click <strong>"Aggiungi"</strong></li>
+                </ol>
+                <p>✅ Ora Mario è amministratore!</p>
+
+                <h4>Iscrivere un utente a un CORSO come Insegnante</h4>
+                <ol>
+                    <li>Vai nel <strong>corso specifico</strong></li>
+                    <li><strong>Amministrazione del corso</strong> → <strong>Utenti</strong> → <strong>Utenti iscritti</strong></li>
+                    <li>Click <strong>"Iscrivi utenti"</strong></li>
+                    <li>Cerca l'utente</li>
+                    <li>Nel menu <strong>"Assegna ruolo"</strong>, seleziona <strong>"Insegnante"</strong></li>
+                    <li>Click <strong>"Iscrivi"</strong></li>
+                </ol>
+
+                <div class="alert alert-info">
+                    <strong>Per iscrivere uno STUDENTE:</strong> Stessa procedura, ma seleziona ruolo <strong>"Studente"</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>12.4 Abilitare l'auto-registrazione</h3>
+
+                <p><strong>Quando usarlo:</strong> Per corsi aperti dove gli utenti si registrano autonomamente</p>
+
+                <p><strong>Procedura:</strong></p>
+                <ol>
+                    <li><strong>Amministrazione del sito</strong> → <strong>Plugin</strong> → <strong>Autenticazione</strong> → <strong>Gestisci autenticazione</strong></li>
+                    <li>Trova <strong>"Auto-registrazione tramite email"</strong></li>
+                    <li>Click sull'<strong>icona occhio</strong> (👁️) per abilitarla</li>
+                    <li>In alto, nel menu a tendina <strong>"Auto-registrazione"</strong>, seleziona <strong>"Auto-registrazione tramite email"</strong></li>
+                    <li>Salva le modifiche</li>
+                </ol>
+
+                <div class="alert alert-info">
+                    <strong>Risultato:</strong> Gli utenti vedranno un link <strong>"Crea un account"</strong> nella pagina di login
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>12.5 Caricare utenti in massa (CSV)</h3>
+
+                <p><strong>Quando usarlo:</strong> Per creare molti utenti in una volta (classe, azienda)</p>
+
+                <h4>Preparare il file CSV</h4>
+                <p>Crea un file <code>utenti.csv</code> con questo formato:</p>
+
+                <pre><code class="language-csv">username,password,firstname,lastname,email
+mario.rossi,Pass123!,Mario,Rossi,mario@deltaskill.it
+laura.bianchi,Pass456!,Laura,Bianchi,laura@deltaskill.it
+paolo.verdi,Pass789!,Paolo,Verdi,paolo@deltaskill.it</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <div class="alert alert-warning">
+                    <strong>⚠️ IMPORTANTE:</strong>
+                    <ul>
+                        <li>Prima riga = intestazioni (non modificare)</li>
+                        <li>Campi separati da virgola</li>
+                        <li>Nessuno spazio extra</li>
+                        <li>Salva come <code>.csv</code> (non Excel)</li>
+                    </ul>
+                </div>
+
+                <h4>Caricare il file</h4>
+                <ol>
+                    <li><strong>Amministrazione del sito</strong> → <strong>Utenti</strong> → <strong>Account</strong> → <strong>Carica utenti</strong></li>
+                    <li>Scegli il file <code>utenti.csv</code></li>
+                    <li>Verifica anteprima - Moodle mostra cosa creerà</li>
+                    <li>Click <strong>"Carica utenti"</strong></li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>12.6 Creare utente via SQL (Veloce)</h3>
+
+                <p><strong>Per sviluppatori:</strong> Creazione rapida da phpMyAdmin</p>
+
+                <pre><code class="language-sql">INSERT INTO mdl_user (auth, confirmed, mnethostid, username, password, firstname, lastname, email, timecreated, timemodified)
+VALUES ('manual', 1, 1, 'studente.test', '$2y$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 'Studente', 'Test', 'studente@test.it', UNIX_TIMESTAMP(), UNIX_TIMESTAMP());</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p><strong>Credenziali create:</strong></p>
+                <ul>
+                    <li>Username: <code>studente.test</code></li>
+                    <li>Password: <code>moodle</code></li>
+                    <li>Nome: <code>Studente Test</code></li>
+                    <li>Email: <code>studente@test.it</code></li>
+                </ul>
+
+                <div class="alert alert-warning">
+                    ⚠️ <strong>Poi devi assegnare il ruolo</strong> tramite interfaccia Moodle!
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>12.7 Best Practices</h3>
+
+                <p><strong>✅ Username:</strong></p>
+                <ul>
+                    <li>Usa formato <code>nome.cognome</code> o <code>ncognome</code></li>
+                    <li>Sempre minuscolo</li>
+                    <li>Nessuno spazio</li>
+                </ul>
+
+                <p><strong>✅ Password:</strong></p>
+                <ul>
+                    <li>Almeno 8 caratteri</li>
+                    <li>Maiuscole, minuscole, numeri, simboli</li>
+                    <li>Forza cambio al primo login per sicurezza</li>
+                </ul>
+
+                <p><strong>✅ Sicurezza:</strong></p>
+                <ul>
+                    <li>Non condividere account admin</li>
+                    <li>Usa ruoli appropriati (non dare admin a tutti)</li>
+                    <li>Sospendi invece di eliminare (dati preservati)</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>12.8 Esempi pratici</h3>
+
+                <h4>Caso 1: Creare un insegnante per un corso</h4>
+                <ol>
+                    <li>Crea utente: <code>prof.informatica</code> / <code>Pass123!</code></li>
+                    <li>Vai nel corso "Programmazione Python"</li>
+                    <li>Amministrazione → Utenti → Iscrivi utenti</li>
+                    <li>Cerca "prof.informatica"</li>
+                    <li>Ruolo: <strong>Insegnante</strong></li>
+                    <li>Iscrivi</li>
+                </ol>
+
+                <h4>Caso 2: Creare un altro amministratore</h4>
+                <ol>
+                    <li>Crea utente: <code>admin2</code> / <code>SecurePass123!</code></li>
+                    <li>Amministrazione → Utenti → Permessi → Assegna ruoli di sistema</li>
+                    <li>Click "Amministratore"</li>
+                    <li>Cerca e aggiungi "admin2"</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 13: Guest Access -->
+        <section id="section-13" class="content-section">
+            <h2>13. Accesso Ospite (Guest)</h2>
+
+            <div class="alert alert-info">
+                <strong>👤 Utente Ospite</strong>
+                <p>Permette l'accesso ai corsi senza registrazione per demo, preview e corsi pubblici.</p>
+            </div>
+
+            <div class="card">
+                <h3>13.1 Cos'è l'utente Ospite?</h3>
+                <p>L'<strong>utente ospite</strong> in Moodle è un account speciale che permette l'accesso ai corsi senza registrazione.</p>
+
+                <h4>Utile per:</h4>
+                <ul>
+                    <li><strong>Demo corsi</strong>: Far vedere i contenuti senza creare account</li>
+                    <li><strong>Corsi pubblici</strong>: Contenuti aperti a tutti</li>
+                    <li><strong>Prove gratuite</strong>: Permettere l'accesso temporaneo</li>
+                </ul>
+
+                <h4>Limitazioni dell'ospite:</h4>
+                <ul>
+                    <li>❌ Non può iscriversi ai corsi</li>
+                    <li>❌ Non può partecipare ai forum</li>
+                    <li>❌ Non può consegnare compiti</li>
+                    <li>❌ Non può fare quiz</li>
+                    <li>✅ Può solo visualizzare contenuti</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>13.2 Verifica utente Guest esistente</h3>
+                <p>Moodle ha già un utente guest predefinito. Verifica che esista:</p>
+
+                <h4>phpMyAdmin</h4>
+                <pre><code class="language-sql">SELECT id, username, firstname, lastname, auth, suspended, deleted
+FROM mdl_user
+WHERE username = 'guest';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p><strong>Risultato atteso:</strong></p>
+                <pre><code>id | username | firstname | lastname | auth   | suspended | deleted
+1  | guest    | Guest     | user     | manual | 0         | 0</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <p>✅ Se esiste, è già pronto (solitamente id=1)</p>
+            </div>
+
+            <div class="card">
+                <h3>13.3 Abilitare accesso Ospite globale</h3>
+
+                <h4>Dal pannello Moodle (Amministratore)</h4>
+                <ol>
+                    <li><strong>Accedi come admin</strong>
+                        <ul>
+                            <li>Username: <code>admin</code></li>
+                            <li>Password: la tua password admin</li>
+                        </ul>
+                    </li>
+                    <li><strong>Vai in Amministrazione sito</strong>
+                        <pre><code>⚙️ Amministrazione del sito → Plugin → Autenticazione → Gestione autenticazione</code></pre>
+                        <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                    </li>
+                    <li><strong>Abilita "Accesso ospite"</strong>
+                        <ul>
+                            <li>Trova "Accesso ospite" nella lista</li>
+                            <li>Clicca l'icona 👁️ per abilitarlo</li>
+                            <li>Deve diventare attivo (icona occhio aperto)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Impostazioni accesso ospite</strong>
+                        <ul>
+                            <li>Clicca su ⚙️ "Impostazioni"</li>
+                            <li>Configura:
+                                <ul>
+                                    <li>✅ <strong>Pulsante login ospite</strong>: Sì (mostra "Accedi come ospite" nel login)</li>
+                                    <li>✅ <strong>Abilita accesso ospite</strong>: Sì</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><strong>Salva modifiche</strong></li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>13.4 Abilitare Ospite su singolo Corso</h3>
+                <p>Per permettere agli ospiti di accedere a un corso specifico:</p>
+
+                <h4>Passo 1: Vai nel corso</h4>
+                <ol>
+                    <li><strong>Dashboard</strong> → Clicca sul corso</li>
+                    <li><strong>Impostazioni corso</strong> → ⚙️ in alto a destra</li>
+                </ol>
+
+                <h4>Passo 2: Aggiungi metodo "Accesso ospiti"</h4>
+                <ol>
+                    <li>Nel menu laterale: <strong>Utenti</strong> → <strong>Metodi di iscrizione</strong></li>
+                    <li>Clicca <strong>Aggiungi metodo</strong> (menu a tendina)</li>
+                    <li>Seleziona <strong>Accesso ospiti</strong></li>
+                    <li>Configura:
+                        <ul>
+                            <li>✅ <strong>Abilita</strong>: Sì</li>
+                            <li>🔑 <strong>Richiedi password</strong>: No (o imposta una password)</li>
+                            <li>⏰ <strong>Durata</strong>: Illimitata</li>
+                        </ul>
+                    </li>
+                    <li>Clicca <strong>Aggiungi metodo</strong></li>
+                </ol>
+
+                <h4>Passo 3: Verifica</h4>
+                <ol>
+                    <li><strong>Esci</strong> da Moodle</li>
+                    <li>Vai alla homepage</li>
+                    <li>Dovresti vedere il pulsante <strong>"Accedi come ospite"</strong> o <strong>"Entra come ospite"</strong></li>
+                    <li>Clicca e verifica l'accesso al corso</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>13.5 Creare un utente Guest personalizzato</h3>
+                <p>Se vuoi un secondo utente tipo guest con username personalizzato:</p>
+
+                <h4>Metodo 1: Via interfaccia Moodle</h4>
+                <ol>
+                    <li><strong>Amministrazione del sito</strong> → <strong>Utenti</strong> → <strong>Aggiungi un nuovo utente</strong></li>
+                    <li>Compila:
+                        <pre><code>Username: ospite.deltaskill
+Password: (lascia vuota o imposta password semplice)
+Nome: Ospite
+Cognome: Deltaskill
+Email: ospite@deltaskill.it
+Metodo di autenticazione: Manuale</code></pre>
+                        <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                    </li>
+                    <li><strong>Crea utente</strong></li>
+                </ol>
+
+                <h4>Metodo 2: Via SQL (phpMyAdmin)</h4>
+                <pre><code class="language-sql">INSERT INTO mdl_user (
+    auth, confirmed, mnethostid, username, password,
+    firstname, lastname, email,
+    timecreated, timemodified
+)
+VALUES (
+    'manual', 1, 1, 'ospite.deltaskill',
+    '$2y$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy',
+    'Ospite', 'Deltaskill', 'ospite@deltaskill.it',
+    UNIX_TIMESTAMP(), UNIX_TIMESTAMP()
+);</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+
+                <div class="alert alert-info">
+                    <strong>📝 Nota:</strong> La password hash corrisponde a <code>moodle</code>
+                </div>
+
+                <h4>Assegna ruolo Guest</h4>
+                <ol>
+                    <li><strong>Amministrazione del sito</strong> → <strong>Utenti</strong> → <strong>Permessi</strong> → <strong>Assegna ruoli globali</strong></li>
+                    <li>Clicca su <strong>Ospite</strong></li>
+                    <li>Cerca e seleziona <code>ospite.deltaskill</code></li>
+                    <li>Clicca <strong>Aggiungi</strong></li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>13.6 Configurazione Password Ospite</h3>
+                <p>Se vuoi che gli ospiti inseriscano una password per accedere al corso:</p>
+
+                <ol>
+                    <li><strong>Corso</strong> → <strong>Utenti</strong> → <strong>Metodi di iscrizione</strong></li>
+                    <li>Clicca ⚙️ su <strong>Accesso ospiti</strong></li>
+                    <li>Configura:
+                        <ul>
+                            <li>🔑 <strong>Richiedi password</strong>: Sì</li>
+                            <li><strong>Password</strong>: <code>DeltaskillGuest2025</code></li>
+                        </ul>
+                    </li>
+                    <li><strong>Salva modifiche</strong></li>
+                </ol>
+
+                <p>Ora gli ospiti dovranno inserire questa password per accedere al corso.</p>
+            </div>
+
+            <div class="card">
+                <h3>13.7 Limitare contenuti visibili agli ospiti</h3>
+                <p>Puoi nascondere attività/risorse agli ospiti:</p>
+
+                <h4>Per singola attività</h4>
+                <ol>
+                    <li>Vai nell'attività/risorsa del corso</li>
+                    <li>Clicca <strong>Modifica</strong> → <strong>Modifica impostazioni</strong></li>
+                    <li>Scorri fino a <strong>Limitazioni accesso</strong></li>
+                    <li>Clicca <strong>Aggiungi limitazione</strong> → <strong>Ruolo utente</strong></li>
+                    <li>Seleziona: ❌ <strong>Ospite</strong> (spunta negativa)</li>
+                    <li><strong>Salva</strong></li>
+                </ol>
+
+                <p>Quella attività sarà invisibile agli ospiti.</p>
+            </div>
+
+            <div class="card">
+                <h3>13.8 Messaggi personalizzati per ospiti</h3>
+                <p>Puoi mostrare messaggi specifici agli ospiti nella homepage:</p>
+
+                <ol>
+                    <li><strong>Amministrazione del sito</strong> → <strong>Aspetto</strong> → <strong>Pagina principale</strong> → <strong>Impostazioni pagina principale</strong></li>
+                    <li>In <strong>Riepilogo pagina principale</strong> scrivi:
+                        <pre><code class="language-html">&lt;div class="alert alert-info"&gt;
+    👋 &lt;strong&gt;Benvenuto Ospite!&lt;/strong&gt;
+    Stai visualizzando i corsi in modalità demo.
+    &lt;a href="/login/signup.php"&gt;Registrati&lt;/a&gt; per accesso completo.
+&lt;/div&gt;</code></pre>
+                        <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                    </li>
+                    <li><strong>Salva modifiche</strong></li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>13.9 Tabella riepilogativa accessi</h3>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: var(--bg-tertiary);">
+                            <th style="padding: 0.75rem; border: 1px solid var(--border-color);">Tipo utente</th>
+                            <th style="padding: 0.75rem; border: 1px solid var(--border-color);">Login richiesto</th>
+                            <th style="padding: 0.75rem; border: 1px solid var(--border-color);">Può iscriversi</th>
+                            <th style="padding: 0.75rem; border: 1px solid var(--border-color);">Può partecipare</th>
+                            <th style="padding: 0.75rem; border: 1px solid var(--border-color);">Può vedere contenuti</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Admin</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Tutto</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Docente</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Suoi corsi</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Studente</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Sì</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Corsi iscritti</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);"><strong>Ospite</strong></td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">❌ No (o semplice)</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">❌ No</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">❌ No</td>
+                            <td style="padding: 0.75rem; border: 1px solid var(--border-color);">✅ Solo visualizzazione</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>13.10 Esempio pratico: Corso Demo</h3>
+                <p><strong>Scenario:</strong> Vuoi un corso "Demo Gratuita" accessibile senza registrazione</p>
+
+                <h4>Step 1: Crea corso demo</h4>
+                <ol>
+                    <li><strong>Amministrazione del sito</strong> → <strong>Corsi</strong> → <strong>Gestisci corsi e categorie</strong></li>
+                    <li>Crea corso:
+                        <pre><code>Nome: Demo Gratuita Deltaskill
+Nome breve: demo-free
+Visibilità: Visibile</code></pre>
+                        <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                    </li>
+                </ol>
+
+                <h4>Step 2: Abilita accesso ospite</h4>
+                <ol>
+                    <li>Entra nel corso</li>
+                    <li><strong>Utenti</strong> → <strong>Metodi di iscrizione</strong></li>
+                    <li>Aggiungi <strong>Accesso ospiti</strong> (senza password)</li>
+                </ol>
+
+                <h4>Step 3: Aggiungi contenuti</h4>
+                <ol>
+                    <li>Aggiungi lezioni/risorse visibili a tutti</li>
+                    <li>Evita quiz/compiti (gli ospiti non possono completarli)</li>
+                </ol>
+
+                <h4>Step 4: Testa</h4>
+                <ol>
+                    <li>Esci da Moodle</li>
+                    <li>Vai su <code>https://tuodominio.it</code></li>
+                    <li>Clicca <strong>"Accedi come ospite"</strong></li>
+                    <li>Verifica di vedere il corso "Demo Gratuita"</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>13.11 Troubleshooting Ospite</h3>
+
+                <div class="troubleshooting-item">
+                    <h4 class="error-title">❌ "Non vedo il pulsante Accedi come ospite"</h4>
+                    <p><strong>Causa:</strong> Accesso ospite disabilitato globalmente</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <pre><code>Amministrazione → Plugin → Autenticazione → Gestione autenticazione
+→ Abilita "Accesso ospite"
+→ Impostazioni → "Pulsante login ospite" = Sì</code></pre>
+                    <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <h4 class="error-title">❌ "L'ospite non vede il corso"</h4>
+                    <p><strong>Causa:</strong> Accesso ospiti non abilitato nel corso</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <pre><code>Corso → Utenti → Metodi di iscrizione
+→ Aggiungi metodo → Accesso ospiti → Abilita</code></pre>
+                    <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <h4 class="error-title">❌ "L'ospite vede messaggio di errore"</h4>
+                    <p><strong>Causa:</strong> Corso richiede password ospite</p>
+                    <p><strong>Soluzione:</strong></p>
+                    <ul>
+                        <li>Controlla se hai impostato una password per ospite nel corso</li>
+                        <li>Rimuovila o comunicala agli utenti</li>
+                    </ul>
+                </div>
+
+                <div class="troubleshooting-item">
+                    <h4 class="error-title">❌ "Voglio permettere agli ospiti di fare quiz"</h4>
+                    <p><strong>Non possibile.</strong> Gli ospiti per design non possono interagire.</p>
+                    <p><strong>Soluzione alternativa:</strong></p>
+                    <ul>
+                        <li>Crea un utente studente con password semplice</li>
+                        <li>Username: <code>demo</code> / Password: <code>Demo2025!</code></li>
+                        <li>Condividi queste credenziali per accesso limitato</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>13.12 Best Practices Accesso Ospite</h3>
+
+                <h4>✅ Quando usare l'accesso ospite:</h4>
+                <ul>
+                    <li>Corsi demo/preview</li>
+                    <li>Contenuti pubblici/marketing</li>
+                    <li>Documentazione aperta</li>
+                </ul>
+
+                <h4>❌ Quando NON usarlo:</h4>
+                <ul>
+                    <li>Corsi con certificati</li>
+                    <li>Corsi con valutazioni</li>
+                    <li>Corsi a pagamento (usa studenti regolari)</li>
+                </ul>
+
+                <h4>🔒 Sicurezza:</h4>
+                <ul>
+                    <li>Non mettere contenuti sensibili in corsi con accesso ospite</li>
+                    <li>Considera che CHIUNQUE può accedere senza tracciabilità</li>
+                </ul>
+
+                <h4>📊 Analytics:</h4>
+                <ul>
+                    <li>Gli ospiti non vengono tracciati nei report</li>
+                    <li>Non vedrai statistiche di completamento</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Checklist Section -->
+        <section id="checklist" class="content-section checklist-section">
+            <h2>📝 Checklist finale</h2>
+            <p>Prima di andare live, verifica:</p>
+
+            <div class="card">
+                <h3>Database</h3>
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Database creato su Aruba</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Password impostata e testata su phpMyAdmin</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>DB importato (se migrazione) o vuoto (se nuovo)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>File</h3>
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span><code>moodle/</code> caricato in <code>/home/moodle/</code></span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span><code>moodledata/</code> caricato in <code>/home/.data_mdl_2025/moodledata/</code></span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Permessi 777 su moodledata (ricorsivo)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span><code>.htaccess</code> in <code>.data_mdl_2025/</code> (blocca accesso web)</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Config.php</h3>
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>File esiste in <code>/home/moodle/config.php</code></span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span><code>$CFG->dbpass</code> ha apice finale (no errori sintassi)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span><code>$CFG->dataroot</code> con percorso assoluto</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span><code>$CFG->wwwroot</code> con https e dominio corretto</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>File finisce con <code>require_once(__DIR__ . '/lib/setup.php');</code></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Test</h3>
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Sito si apre senza errore 500</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Login funziona</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Corsi visibili (se migrazione)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Upload file funziona</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Cache scrive correttamente</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Sicurezza</h3>
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>SSL/HTTPS attivo</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span><code>.data_mdl_2025/</code> non accessibile da web (errore 403)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Password DB sicura</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Debug disabilitato in produzione</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Performance</h3>
+                <div class="checklist">
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>PHP 8.2 attivo</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>HiSpeed Cache abilitata</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>Cron configurato</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox" class="checklist-checkbox">
+                        <span>memory_limit almeno 256M</span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p><strong>Creata il:</strong> 25 Ottobre 2025</p>
+            <p><strong>Basata su:</strong> Migrazione reale deltaskill.it</p>
+            <p><strong>Testata su:</strong> Aruba Hosting Linux + Moodle 4.x</p>
+            <p class="footer-emoji">🎉 Buon lavoro con Moodle!</p>
+        </footer>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
