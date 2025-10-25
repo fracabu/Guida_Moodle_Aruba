@@ -407,10 +407,47 @@ body {
 
 .card h3 {
     margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.card h4 {
+    margin-top: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.card p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.card ol,
+.card ul {
+    margin: 1rem 0;
+    padding-left: 1.75rem;
+}
+
+.card ol li,
+.card ul li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.card ol li ol,
+.card ol li ul,
+.card ul li ol,
+.card ul li ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
 }
 
 .card code {
     word-break: break-all;
+}
+
+.card strong {
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 /* Alerts */
@@ -421,6 +458,42 @@ body {
     border-left: 4px solid;
     overflow-wrap: break-word;
     word-wrap: break-word;
+}
+
+.alert h3,
+.alert h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+.alert p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.alert ol,
+.alert ul {
+    margin: 1rem 0;
+    padding-left: 1.75rem;
+}
+
+.alert ol li,
+.alert ul li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.alert ol li ol,
+.alert ol li ul,
+.alert ul li ol,
+.alert ul li ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+.alert strong {
+    font-weight: 600;
 }
 
 .alert-info {
@@ -447,17 +520,43 @@ body {
     font-size: 1.125rem;
 }
 
+/* Code Blocks Container */
+.card, .content-section, .alert {
+    position: relative;
+}
+
 /* Code Blocks */
 pre {
     position: relative;
     background: #1e293b;
     border-radius: 8px;
     padding: 1rem;
+    padding-top: 2.5rem;
     overflow-x: auto;
     overflow-y: hidden;
     margin: 1rem 0;
     max-width: 100%;
     -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) #334155;
+}
+
+pre::-webkit-scrollbar {
+    height: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+    background: #334155;
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
 }
 
 pre code {
@@ -465,6 +564,7 @@ pre code {
     white-space: pre;
     overflow-wrap: normal;
     word-wrap: normal;
+    word-break: normal;
 }
 
 code {
@@ -482,6 +582,7 @@ code {
     word-break: break-all;
 }
 
+/* Copy button positioned absolutely within pre */
 .btn-copy {
     position: absolute;
     top: 0.5rem;
@@ -494,6 +595,7 @@ code {
     cursor: pointer;
     font-size: 0.875rem;
     transition: var(--transition);
+    z-index: 10;
 }
 
 .btn-copy:hover {
@@ -678,8 +780,18 @@ code {
         padding: 1rem;
     }
 
+    .card ol,
+    .card ul {
+        padding-left: 1.5rem;
+    }
+
     .alert {
         padding: 0.875rem 1rem;
+    }
+
+    .alert ol,
+    .alert ul {
+        padding-left: 1.5rem;
     }
 
     .search-overlay {
@@ -696,6 +808,7 @@ code {
 
     pre {
         padding: 0.75rem;
+        padding-top: 2.5rem;
         padding-right: 0.5rem;
         margin-left: -0.5rem;
         margin-right: -0.5rem;
@@ -749,12 +862,23 @@ code {
         padding: 0.875rem;
     }
 
+    .card ol,
+    .card ul {
+        padding-left: 1.25rem;
+    }
+
     .alert {
         padding: 0.75rem;
     }
 
+    .alert ol,
+    .alert ul {
+        padding-left: 1.25rem;
+    }
+
     pre {
         padding: 0.5rem;
+        padding-top: 2.25rem;
         margin-left: -0.875rem;
         margin-right: -0.875rem;
         font-size: 0.7rem;
@@ -767,6 +891,8 @@ code {
     .btn-copy {
         padding: 0.25rem 0.5rem;
         font-size: 0.7rem;
+        top: 0.25rem;
+        right: 0.25rem;
     }
 
     .nav-text {

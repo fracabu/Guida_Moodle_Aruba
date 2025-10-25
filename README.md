@@ -160,10 +160,19 @@ Hai suggerimenti per migliorare la guida?
 ---
 
 **Creato il:** 25 Ottobre 2025
-**Versione:** 1.2.0
+**Versione:** 1.3.0
 **Basato su:** Migrazione reale deltaskill.it
 
 ### 🔄 Changelog
+
+**v1.3.0** (25 Ottobre 2025)
+- 🎯 Pulsanti "Copia" ora correttamente posizionati nei blocchi di codice
+- 🎯 Scrollbar orizzontali personalizzate e funzionanti nei blocchi codice
+- 📝 Sistemato allineamento di testi, liste e paragrafi nelle card e alert
+- 📝 Migliorato spacing e padding per liste annidate
+- 📝 Maggiore leggibilità con line-height ottimizzato
+- 🔧 Aggiunta funzione JavaScript per riposizionare automaticamente i pulsanti copia
+- 🎨 Scrollbar personalizzate con colori tema per migliore UX
 
 **v1.2.0** (25 Ottobre 2025)
 - 🔒 Sostituite tutte le password di esempio con placeholder generici

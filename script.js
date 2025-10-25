@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initChecklist();
     initScrollSpy();
     loadChecklistProgress();
+    fixCopyButtons();
 });
 
 // ============================================
@@ -231,10 +232,29 @@ function goToSection(sectionId) {
 }
 
 // ============================================
+// FIX COPY BUTTONS POSITION
+// ============================================
+function fixCopyButtons() {
+    // Trova tutti i pulsanti copia
+    const copyButtons = document.querySelectorAll('.btn-copy');
+
+    copyButtons.forEach(button => {
+        // Trova il pre precedente
+        const pre = button.previousElementSibling;
+
+        if (pre && pre.tagName === 'PRE') {
+            // Sposta il button dentro il pre
+            pre.appendChild(button);
+        }
+    });
+}
+
+// ============================================
 // COPY CODE FUNCTIONALITY
 // ============================================
 function copyCode(button) {
-    const pre = button.previousElementSibling;
+    // Il button ora è dentro il pre
+    const pre = button.parentElement;
     const code = pre.querySelector('code');
     const text = code.textContent;
 
