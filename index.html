@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guida Interattiva: Moodle su Aruba</title>
+    <title>Guida Completa Moodle</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 </head>
@@ -18,7 +18,7 @@
                     <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
             </button>
-            <h1>🎓 Guida Moodle su Aruba</h1>
+            <h1>🎓 Guida Completa Moodle</h1>
             <div class="header-controls">
                 <button id="searchBtn" class="btn-icon" title="Cerca">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -56,55 +56,67 @@
         <nav class="sidebar-nav">
             <a href="#section-1" class="nav-item" data-section="1">
                 <span class="nav-number">1</span>
-                <span class="nav-text">Scegliere l'hosting</span>
+                <span class="nav-text">Ambiente Sviluppo</span>
             </a>
             <a href="#section-2" class="nav-item" data-section="2">
                 <span class="nav-number">2</span>
-                <span class="nav-text">Preparazione locale</span>
+                <span class="nav-text">Struttura Moodle</span>
             </a>
             <a href="#section-3" class="nav-item" data-section="3">
                 <span class="nav-number">3</span>
-                <span class="nav-text">Backup completo</span>
+                <span class="nav-text">Creare Plugin</span>
             </a>
             <a href="#section-4" class="nav-item" data-section="4">
                 <span class="nav-number">4</span>
-                <span class="nav-text">Database MySQL</span>
+                <span class="nav-text">Standard Corsi</span>
             </a>
             <a href="#section-5" class="nav-item" data-section="5">
                 <span class="nav-number">5</span>
-                <span class="nav-text">Caricare file</span>
+                <span class="nav-text">Scegliere Hosting</span>
             </a>
             <a href="#section-6" class="nav-item" data-section="6">
                 <span class="nav-number">6</span>
-                <span class="nav-text">Configurare config.php</span>
+                <span class="nav-text">Database MySQL</span>
             </a>
             <a href="#section-7" class="nav-item" data-section="7">
                 <span class="nav-number">7</span>
-                <span class="nav-text">Proteggere moodledata</span>
+                <span class="nav-text">Caricare File</span>
             </a>
             <a href="#section-8" class="nav-item" data-section="8">
                 <span class="nav-number">8</span>
-                <span class="nav-text">Test e verifica</span>
+                <span class="nav-text">Configurare config.php</span>
             </a>
             <a href="#section-9" class="nav-item" data-section="9">
                 <span class="nav-number">9</span>
-                <span class="nav-text">Troubleshooting</span>
+                <span class="nav-text">Proteggere moodledata</span>
             </a>
             <a href="#section-10" class="nav-item" data-section="10">
                 <span class="nav-number">10</span>
-                <span class="nav-text">Ottimizzazioni</span>
+                <span class="nav-text">Proteggere moodledata</span>
             </a>
             <a href="#section-11" class="nav-item" data-section="11">
                 <span class="nav-number">11</span>
-                <span class="nav-text">Reset Password Admin</span>
+                <span class="nav-text">Test e Verifica</span>
             </a>
             <a href="#section-12" class="nav-item" data-section="12">
                 <span class="nav-number">12</span>
-                <span class="nav-text">Gestione Utenti</span>
+                <span class="nav-text">Troubleshooting</span>
             </a>
             <a href="#section-13" class="nav-item" data-section="13">
                 <span class="nav-number">13</span>
-                <span class="nav-text">Accesso Ospite (Guest)</span>
+                <span class="nav-text">Ottimizzazioni</span>
+            </a>
+            <a href="#section-14" class="nav-item" data-section="14">
+                <span class="nav-number">14</span>
+                <span class="nav-text">Reset Password</span>
+            </a>
+            <a href="#section-15" class="nav-item" data-section="15">
+                <span class="nav-number">15</span>
+                <span class="nav-text">Gestione Utenti</span>
+            </a>
+            <a href="#section-16" class="nav-item" data-section="16">
+                <span class="nav-number">16</span>
+                <span class="nav-text">Accesso Ospite</span>
             </a>
             <a href="#checklist" class="nav-item" data-section="checklist">
                 <span class="nav-number">✓</span>
@@ -119,13 +131,262 @@
     <!-- Main Content -->
     <main class="main-content" id="mainContent">
         <div class="hero">
-            <h1>Guida Completa: Installare Moodle su Aruba</h1>
-            <p class="subtitle">Dalla A alla Z - Basata su problemi reali risolti</p>
+            <h1>Guida Completa Moodle</h1>
+            <p class="subtitle">Sviluppo, Plugin, Standard Corsi e Hosting Aruba</p>
         </div>
 
-        <!-- Section 1 -->
+        <!-- Section 1: Ambiente Sviluppo -->
         <section id="section-1" class="content-section">
-            <h2>1. Scegliere l'hosting corretto su Aruba</h2>
+            <h2>1. Ambiente di Sviluppo Locale</h2>
+
+            <div class="alert alert-info">
+                <strong>Setup Moodle in locale per sviluppo e test</strong>
+                <p>Prima di andare in produzione, configura un ambiente locale.</p>
+            </div>
+
+            <div class="card">
+                <h3>Opzione 1: Moodle Windows Installer (Consigliato)</h3>
+                <p>Pacchetto completo con Apache, MySQL, PHP preconfigurati.</p>
+                <pre><code>Download: https://download.moodle.org/windows/
+Installa in: C:\moodle\
+
+Struttura:
+C:\moodle\
+├── Start Moodle.exe    ← Avvia server
+├── Stop Moodle.exe     ← Ferma server
+└── server\
+    ├── moodle\         ← Codice Moodle
+    ├── moodledata\     ← Dati utente
+    ├── mysql\          ← Database
+    ├── apache\         ← Web server
+    └── php\            ← PHP</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+                <p><strong>Avvio:</strong> Doppio click su <code>Start Moodle.exe</code>, poi apri <code>http://localhost</code></p>
+            </div>
+
+            <div class="card">
+                <h3>Opzione 2: XAMPP + Moodle manuale</h3>
+                <ol>
+                    <li>Installa XAMPP da <code>apachefriends.org</code></li>
+                    <li>Scarica Moodle da <code>moodle.org/download</code></li>
+                    <li>Estrai in <code>C:\xampp\htdocs\moodle</code></li>
+                    <li>Crea database MySQL da phpMyAdmin</li>
+                    <li>Accedi a <code>http://localhost/moodle</code></li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>Test del server locale</h3>
+                <pre><code class="language-bash"># Verifica che il server sia attivo
+curl http://localhost
+
+# Verifica PHP
+php -v
+
+# Verifica MySQL
+mysql -u root -p -e "SHOW DATABASES;"</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+        </section>
+
+        <!-- Section 2: Struttura Moodle -->
+        <section id="section-2" class="content-section">
+            <h2>2. Struttura Directory Moodle</h2>
+
+            <div class="card">
+                <h3>Cartelle principali</h3>
+                <pre><code>moodle/
+├── admin/          ← Amministrazione sito
+├── auth/           ← Plugin autenticazione
+├── blocks/         ← Blocchi sidebar
+├── course/         ← Gestione corsi
+├── enrol/          ← Plugin iscrizioni
+├── lang/           ← File lingua
+├── lib/            ← Librerie core
+├── local/          ← Plugin locali (SVILUPPO)
+├── mod/            ← Moduli attività
+├── theme/          ← Temi grafici
+├── user/           ← Gestione utenti
+├── config.php      ← Configurazione
+└── version.php     ← Versione Moodle</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>Cartelle per plugin (dove sviluppare)</h3>
+                <table>
+                    <tr><th>Tipo</th><th>Cartella</th><th>Uso</th></tr>
+                    <tr><td>Locale</td><td><code>local/</code></td><td>Funzionalità custom</td></tr>
+                    <tr><td>Attività</td><td><code>mod/</code></td><td>Nuovi tipi attività</td></tr>
+                    <tr><td>Blocchi</td><td><code>blocks/</code></td><td>Widget sidebar</td></tr>
+                    <tr><td>Temi</td><td><code>theme/</code></td><td>Aspetto grafico</td></tr>
+                    <tr><td>Auth</td><td><code>auth/</code></td><td>Autenticazione</td></tr>
+                    <tr><td>Enrol</td><td><code>enrol/</code></td><td>Iscrizioni</td></tr>
+                </table>
+            </div>
+
+            <div class="alert alert-warning">
+                <strong>moodledata vs moodle</strong>
+                <ul>
+                    <li><code>moodle/</code> = codice PHP (va in htdocs)</li>
+                    <li><code>moodledata/</code> = file utente, cache, sessioni (FUORI da htdocs!)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 3: Creare Plugin -->
+        <section id="section-3" class="content-section">
+            <h2>3. Creare un Plugin Moodle</h2>
+
+            <div class="alert alert-info">
+                <strong>Il tipo più semplice: plugin locale</strong>
+                <p>I plugin <code>local/</code> sono ideali per iniziare.</p>
+            </div>
+
+            <div class="card">
+                <h3>Struttura minima plugin locale</h3>
+                <pre><code>local/mioplugin/
+├── version.php         ← OBBLIGATORIO
+├── lang/
+│   └── en/
+│       └── local_mioplugin.php
+├── db/
+│   └── access.php      ← Permessi
+├── classes/            ← Classi PHP
+├── index.php           ← Pagina principale
+└── lib.php             ← Funzioni</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>version.php (obbligatorio)</h3>
+                <pre><code class="language-php">&lt;?php
+defined('MOODLE_INTERNAL') || die();
+
+$plugin->component = 'local_mioplugin';
+$plugin->version = 2024010100;  // YYYYMMDDXX
+$plugin->requires = 2022041900; // Moodle 4.0+
+$plugin->maturity = MATURITY_STABLE;
+$plugin->release = 'v1.0.0';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>File lingua (lang/en/local_mioplugin.php)</h3>
+                <pre><code class="language-php">&lt;?php
+$string['pluginname'] = 'Mio Plugin';
+$string['hello'] = 'Ciao dal mio plugin!';</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>Installare il plugin</h3>
+                <ol>
+                    <li>Copia la cartella in <code>C:\moodle\server\moodle\local\</code></li>
+                    <li>Accedi come admin a Moodle</li>
+                    <li>Vai su <strong>Amministrazione → Notifiche</strong></li>
+                    <li>Moodle rileva il nuovo plugin e chiede di installarlo</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 4: Standard Corsi -->
+        <section id="section-4" class="content-section">
+            <h2>4. Standard Corsi Moodle</h2>
+
+            <div class="alert alert-info">
+                <strong>Formati per generare corsi automaticamente</strong>
+                <p>Moodle supporta diversi formati di import/export. Scegli quello giusto per i tuoi agenti AI.</p>
+            </div>
+
+            <div class="card">
+                <h3>Formato GIFT (Quiz)</h3>
+                <p>Il più semplice per generare quiz automaticamente:</p>
+                <pre><code class="language-plaintext">// Scelta multipla
+::Domanda 1::Qual è la capitale d'Italia?{
+    =Roma
+    ~Milano
+    ~Napoli
+    ~Torino
+}
+
+// Vero/Falso
+::Domanda 2::Il sole è una stella.{TRUE}
+
+// Risposta breve
+::Domanda 3::La capitale della Francia è {=Parigi =Paris}</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>Formato SCORM</h3>
+                <p>Pacchetti interattivi universali (funzionano su qualsiasi LMS):</p>
+                <pre><code>pacchetto-scorm.zip/
+├── imsmanifest.xml      ← Manifest SCORM 1.2
+├── index.html           ← Contenuto principale
+├── scorm_api.js         ← Tracciamento
+├── styles.css
+└── content/
+    ├── modulo1.html
+    └── modulo2.html</code></pre>
+                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
+            </div>
+
+            <div class="card">
+                <h3>Analisi: scorm-course-generator</h3>
+                <p><strong>Percorso:</strong> <code>C:\Users\utente\scorm-course-generator\</code></p>
+
+                <h4>I 5 Agenti:</h4>
+                <table>
+                    <tr><th>Agente</th><th>Funzione</th></tr>
+                    <tr><td>Course Outliner</td><td>Intervista e struttura corso</td></tr>
+                    <tr><td>Content Creator</td><td>Genera contenuti markdown</td></tr>
+                    <tr><td>Senior Editor</td><td>Raffina grammatica (usa Sonnet)</td></tr>
+                    <tr><td>SCORM Packager</td><td>Crea pacchetto .zip SCORM 1.2</td></tr>
+                    <tr><td>Multimedia</td><td>Integra audio/video</td></tr>
+                </table>
+
+                <h4>Stato attuale: 60%</h4>
+                <ul>
+                    <li>✅ SCORM 1.2 compliant</li>
+                    <li>✅ 5 agenti specializzati</li>
+                    <li>✅ 3 corsi esempio</li>
+                    <li>✅ Supporto multimedia</li>
+                    <li>❌ Quiz GIFT automatici</li>
+                    <li>❌ Moodle REST API</li>
+                    <li>❌ Formato .mbz nativo</li>
+                </ul>
+
+                <h4>Roadmap 90%:</h4>
+                <ol>
+                    <li><strong>Quiz Generator:</strong> Agente che produce file .gift</li>
+                    <li><strong>REST API:</strong> Upload automatico su Moodle</li>
+                    <li><strong>Validazione:</strong> Check contenuti pre-generazione</li>
+                    <li><strong>Output multipli:</strong> SCORM + GIFT + JSON struttura</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>Come importare in Moodle</h3>
+                <h4>Quiz GIFT:</h4>
+                <ol>
+                    <li>Amministrazione corso → Banco delle domande</li>
+                    <li>Importa → Formato GIFT</li>
+                    <li>Carica file .txt</li>
+                </ol>
+
+                <h4>SCORM:</h4>
+                <ol>
+                    <li>Nel corso, Attiva modifica</li>
+                    <li>Aggiungi attività → Pacchetto SCORM</li>
+                    <li>Carica file .zip</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Section 5: Scegliere hosting -->
+        <section id="section-5" class="content-section">
+            <h2>5. Scegliere l'hosting corretto su Aruba</h2>
 
             <div class="alert alert-warning">
                 <strong>⚠️ IMPORTANTE: Quale piano scegliere</strong>
@@ -179,34 +440,9 @@
             </div>
         </section>
 
-        <!-- Section 2 -->
-        <section id="section-2" class="content-section">
-            <h2>2. Preparazione in locale (Moodle for Windows)</h2>
-
-            <div class="card">
-                <h3>Struttura tipica di Moodle for Windows</h3>
-                <pre><code class="language-plaintext">C:\moodle\
-├── server\
-│   ├── moodle.exe        ← Avvia/ferma il server locale
-│   ├── htdocs\
-│   │   └── moodle\       ← CODICE MOODLE (da caricare su Aruba)
-│   └── moodledata\       ← DATI (corsi, file, cache) - da caricare su Aruba</code></pre>
-                <button class="btn-copy" onclick="copyCode(this)">Copia</button>
-            </div>
-
-            <div class="alert alert-info">
-                <h4>Come funziona in locale:</h4>
-                <ul>
-                    <li><strong>moodle.exe</strong>: È un server locale (Apache + MySQL + PHP) preconfigurato</li>
-                    <li><strong>NON crea "nuovi progetti"</strong> - hai 1 installazione = 1 sito Moodle</li>
-                    <li>Puoi creare più Moodle installando in cartelle diverse</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Section 3 -->
-        <section id="section-3" class="content-section">
-            <h2>3. Backup completo prima della migrazione</h2>
+        <!-- Section 6: Database MySQL -->
+        <section id="section-6" class="content-section">
+            <h2>6. Backup e Database MySQL</h2>
 
             <div class="card">
                 <h3>3.1 Backup FILE (codice Moodle)</h3>
@@ -250,9 +486,9 @@
             </div>
         </section>
 
-        <!-- Section 4 -->
-        <section id="section-4" class="content-section">
-            <h2>4. Creare il database MySQL su Aruba</h2>
+        <!-- Section 7: Caricare File -->
+        <section id="section-7" class="content-section">
+            <h2>7. Creare il database MySQL su Aruba</h2>
 
             <div class="card">
                 <h3>4.1 Creare il database</h3>
@@ -319,9 +555,9 @@
             </div>
         </section>
 
-        <!-- Section 5 -->
-        <section id="section-5" class="content-section">
-            <h2>5. Caricare i file su Aruba</h2>
+        <!-- Section 8: Caricare File -->
+        <section id="section-8" class="content-section">
+            <h2>8. Caricare i file su Aruba</h2>
 
             <div class="card">
                 <h3>5.1 Struttura finale su Aruba</h3>
@@ -403,9 +639,9 @@
             </div>
         </section>
 
-        <!-- Section 6 -->
-        <section id="section-6" class="content-section">
-            <h2>6. Configurare config.php correttamente</h2>
+        <!-- Section 9: config.php -->
+        <section id="section-9" class="content-section">
+            <h2>9. Configurare config.php correttamente</h2>
 
             <div class="alert alert-warning">
                 <h4>⚠️ Problema comune: File Manager non crea .php</h4>
@@ -506,9 +742,9 @@ require_once(__DIR__ . '/lib/setup.php');</code></pre>
             </div>
         </section>
 
-        <!-- Section 7 -->
-        <section id="section-7" class="content-section">
-            <h2>7. Proteggere moodledata</h2>
+        <!-- Section 10: Proteggere moodledata -->
+        <section id="section-10" class="content-section">
+            <h2>10. Proteggere moodledata</h2>
 
             <div class="card">
                 <h3>7.1 Creare .htaccess dentro .data_mdl_2025</h3>
@@ -539,9 +775,9 @@ Options -Indexes</code></pre>
             </div>
         </section>
 
-        <!-- Section 8 -->
-        <section id="section-8" class="content-section">
-            <h2>8. Test e verifica</h2>
+        <!-- Section 11: Test e Verifica -->
+        <section id="section-11" class="content-section">
+            <h2>11. Test e verifica</h2>
 
             <div class="card">
                 <h3>8.1 Primo accesso</h3>
@@ -573,9 +809,9 @@ Options -Indexes</code></pre>
             </div>
         </section>
 
-        <!-- Section 9 -->
-        <section id="section-9" class="content-section">
-            <h2>9. Troubleshooting errori comuni</h2>
+        <!-- Section 12: Troubleshooting -->
+        <section id="section-12" class="content-section">
+            <h2>12. Troubleshooting errori comuni</h2>
 
             <div class="troubleshooting-item">
                 <h3 class="error-title">🔴 Errore 500 (Internal Server Error)</h3>
@@ -696,9 +932,9 @@ require_once(__DIR__ . '/lib/setup.php');</code></pre>
             </div>
         </section>
 
-        <!-- Section 10 -->
-        <section id="section-10" class="content-section">
-            <h2>10. Ottimizzazioni finali</h2>
+        <!-- Section 13: Ottimizzazioni -->
+        <section id="section-13" class="content-section">
+            <h2>13. Ottimizzazioni finali</h2>
 
             <div class="card">
                 <h3>10.1 Versione PHP</h3>
@@ -774,9 +1010,9 @@ exit;</code></pre>
             </div>
         </section>
 
-        <!-- Section 11 -->
-        <section id="section-11" class="content-section">
-            <h2>11. Reset Password Admin Dopo Migrazione</h2>
+        <!-- Section 14: Reset Password -->
+        <section id="section-14" class="content-section">
+            <h2>14. Reset Password Admin Dopo Migrazione</h2>
 
             <div class="alert alert-warning">
                 <strong>🔐 Problema: Non riesco ad accedere dopo la migrazione</strong>
@@ -1044,9 +1280,9 @@ WHERE username = 'admin';</code></pre>
             </div>
         </section>
 
-        <!-- Section 12 -->
-        <section id="section-12" class="content-section">
-            <h2>12. Gestione Utenti in Moodle</h2>
+        <!-- Section 15: Gestione Utenti -->
+        <section id="section-15" class="content-section">
+            <h2>15. Gestione Utenti in Moodle</h2>
 
             <p>Una volta entrato come admin, puoi creare utenti per la tua piattaforma.</p>
 
@@ -1260,9 +1496,9 @@ VALUES ('manual', 1, 1, 'studente.test', '$2y$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7
             </div>
         </section>
 
-        <!-- Section 13: Guest Access -->
-        <section id="section-13" class="content-section">
-            <h2>13. Accesso Ospite (Guest)</h2>
+        <!-- Section 16: Accesso Ospite -->
+        <section id="section-16" class="content-section">
+            <h2>16. Accesso Ospite (Guest)</h2>
 
             <div class="alert alert-info">
                 <strong>👤 Utente Ospite</strong>

@@ -2,13 +2,14 @@
    VARIABILI CSS
    ============================================ */
 :root {
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
+    --primary-color: #f98012;
+    --primary-hover: #e8710a;
     --secondary-color: #64748b;
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
-    --error-color: #ef4444;
-    --info-color: #3b82f6;
+    --success-color: #357a32;
+    --warning-color: #f0ad4e;
+    --error-color: #ca3120;
+    --info-color: #1177d1;
+    --moodle-light-orange: #fff4e6;
 
     --bg-primary: #ffffff;
     --bg-secondary: #f8fafc;
@@ -134,7 +135,7 @@ body {
 
 .progress-bar {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    background: linear-gradient(90deg, #f98012, #ffaa4d);
     width: 0%;
     transition: width 0.3s ease;
 }
@@ -327,7 +328,7 @@ body {
 }
 
 .hero {
-    background: linear-gradient(135deg, var(--primary-color), #7c3aed);
+    background: linear-gradient(135deg, #f98012, #e8710a, #d4620a);
     color: white;
     padding: 3rem 2rem;
     border-radius: 16px;
